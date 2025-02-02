@@ -1,26 +1,9 @@
-<style>
-  :host {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-</style>
+<app-header />
 
-<main class="main">
-  <div class="content">
-    <app-header></app-header>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-  </div>
+<main>
+  <ul id="users">
+    <li><app-user /></li>
+  </ul>
 </main>
 
 <router-outlet />
