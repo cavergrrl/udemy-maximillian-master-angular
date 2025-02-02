@@ -12,6 +12,10 @@ const randomIndex = Math.floor(Math.random() * USERS.length);
 export class UserComponent {
   user = USERS[randomIndex];
 
+  onSelectUser() {
+    console.log(`${this.user.name} selected`);
+  }
+
   get avatarPath() {
     return `assets/users/${this.user.avatar}`;
   }
