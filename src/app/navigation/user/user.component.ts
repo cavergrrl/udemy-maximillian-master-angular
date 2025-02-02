@@ -8,14 +8,11 @@ import { USERS } from '../../../mock/users';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  randomIndex = this.generateRandomIndex();
-  user = signal(USERS[this.randomIndex]);
-  avatarPath = computed(() => `assets/users/${this.user().avatar}`);
+  user = signal(USERS[this.generateRandomIndex()]);
 
   onSelectUser() {
     console.log(`user currently: ${this.user().name}`);
-    const index = this.generateRandomIndex();
-    this.user.set(USERS[index]);
+    this.user.set(USERS[this.generateRandomIndex()]);
     console.log(`user updated: ${this.user().name}`);
   }
 
@@ -23,7 +20,7 @@ export class UserComponent {
     return Math.floor(Math.random() * USERS.length);
   }
 
-  /*get avatarPath() {
+  get avatarPath() {
     return computed( () => `assets/users/${this.user().avatar}`);
-  }*/
+  }
 }
