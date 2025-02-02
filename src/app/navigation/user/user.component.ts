@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { USERS } from '../../../mock/users';
 
 @Component({
@@ -7,32 +7,23 @@ import { USERS } from '../../../mock/users';
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent implements OnInit {
-  randomIndex = 0;
-  user = {
-    id: '',
-    name: '',
-    avatar: ''
-  };
-
-  constructor() {
-    this.randomIndex = this.generateRandomIndex();
-    this.user = USERS[this.randomIndex];
-  }
-
-  ngOnInit() {
-    console.log('UserComponent initialized with user:', this.user);
-  }
+export class UserComponent {
+  randomIndex = this.generateRandomIndex();
+  user = signal(USERS[this.randomIndex]);
+  avatarPath = computed(() => `assets/users/${this.user().avatar}`);
 
   onSelectUser() {
-    console.log(`${this.user.name} selected`);
+    console.log(`user currently: ${this.user().name}`);
+    const index = this.generateRandomIndex();
+    this.user.set(USERS[index]);
+    console.log(`user updated: ${this.user().name}`);
   }
 
   generateRandomIndex() {
     return Math.floor(Math.random() * USERS.length);
   }
 
-  get avatarPath() {
-    return `assets/users/${this.user.avatar}`;
-  }
+  /*get avatarPath() {
+    return computed( () => `assets/users/${this.user().avatar}`);
+  }*/
 }
