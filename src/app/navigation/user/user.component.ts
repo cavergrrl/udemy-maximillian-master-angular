@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { USERS } from '../../../mock/users';
-
-const randomIndex = Math.floor(Math.random() * USERS.length);
 
 @Component({
   selector: 'app-user',
@@ -9,11 +7,29 @@ const randomIndex = Math.floor(Math.random() * USERS.length);
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent {
-  user = USERS[randomIndex];
+export class UserComponent implements OnInit {
+  randomIndex = 0;
+  user = {
+    id: '',
+    name: '',
+    avatar: ''
+  };
+
+  constructor() {
+    this.randomIndex = this.generateRandomIndex();
+    this.user = USERS[this.randomIndex];
+  }
+
+  ngOnInit() {
+    console.log('UserComponent initialized with user:', this.user);
+  }
 
   onSelectUser() {
     console.log(`${this.user.name} selected`);
+  }
+
+  generateRandomIndex() {
+    return Math.floor(Math.random() * USERS.length);
   }
 
   get avatarPath() {
