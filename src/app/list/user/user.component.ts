@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Input, input } from '@angular/core';
 import { Output, output, EventEmitter } from '@angular/core';
 import { signal, computed } from '@angular/core';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user',
@@ -10,7 +11,7 @@ import { signal, computed } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({ required: true }) user!: { id: string, name: string; avatar: string }; // Angular 18 and below
+  @Input({ required: true }) user!: User; // Angular 18 and below
   userID = input.required<string>(); // latest
 
   // @Output() select = new EventEmitter(); // Angular 18 and below

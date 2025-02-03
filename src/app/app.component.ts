@@ -5,7 +5,7 @@ import {HeaderComponent} from './header/header.component';
 import {UserComponent} from './list/user/user.component';
 import { TaskItemComponent } from './list/task-item/task-item.component';
 import { USERS } from '../mock/users';
-
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ import { USERS } from '../mock/users';
 export class AppComponent {
   title:string = 'Udemy - Master Angular';
   selectedUserID:string = '';
-  selectedUser: { id: string; name: string; avatar: string; } | undefined;
+  selectedUser: User | undefined;
 
   onSelectUser(id: string) {
     this.selectedUserID = id;

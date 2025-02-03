@@ -13,14 +13,7 @@
     </ul>
   </div>
   <div>
-    <app-task-item
-      [userID]="selectedUserID"
-      [userName]="selectedUser?.name"
-    />
-      <!--[tasks]="tasks"
-      [selectedUser]="selectedUser"
-      (addTask)="onAddTask($event)"
-      (deleteTask)="onDeleteTask($event)"-->
+    <app-task-item [user]="selectedUser" />
   </div>
 </main>
 

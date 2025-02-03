@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-task-item',
@@ -7,7 +8,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './task-item.component.css'
 })
 export class TaskItemComponent {
-  @Input({ required:true }) userID!: string;
-  @Input({ required:true }) userName: string | undefined;
+  @Input({ required:true }) user: User | undefined;
 
 }
