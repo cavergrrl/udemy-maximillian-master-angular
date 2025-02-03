@@ -8,5 +8,6 @@ import { Task } from '../../models/task.model';
   styleUrl: './task-item.component.css'
 })
 export class TaskItemComponent {
+  @Input({ required:true }) task!: Task;
 
 }

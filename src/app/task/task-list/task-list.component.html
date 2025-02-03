@@ -1,14 +1,23 @@
 <section id="tasks">
   <header>
-    <h2><img class="avatar" [src]="avatarPath()" [alt]="user?.name"/> {{user?.name}}'s Tasks</h2>
+    <h2><img class="avatar" [src]="avatarPath" [alt]="user?.name"/> {{user?.name}}'s Tasks</h2>
     <menu>
       <button (click)="onAddTask()">Add Task</button>
     </menu>
   </header>
 
   <ul>
-    <li>
-      <app-task-item />
-    </li>
+    @if (tasksForUser.length > 0) {
+      @for (task of tasksForUser; track task.id) {
+        <li>
+          <app-task-item [task]="task"></app-task-item>
+        </li>
+      }
+    }
+    @else {
+      <li>
+        <p>No tasks found</p>
+      </li>
+    }
   </ul>
 </section>
