@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Input, input } from '@angular/core';
-import { Output, output, EventEmitter } from '@angular/core';
-import { signal, computed } from '@angular/core';
+import { output } from '@angular/core';
+// import { Output, EventEmitter } from '@angular/core';
+import { computed } from '@angular/core';
+// import { signal } from '@angular/core';
 import { User } from '../models/user.model';
 
 @Component({
@@ -12,6 +14,7 @@ import { User } from '../models/user.model';
 })
 export class UserComponent {
   @Input({ required: true }) user!: User; // Angular 18 and below
+  @Input({ required: true }) selected: boolean = false;
   userID = input.required<string>(); // latest
 
   // @Output() select = new EventEmitter(); // Angular 18 and below

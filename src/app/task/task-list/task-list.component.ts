@@ -1,7 +1,7 @@
-import { Component, computed, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { User } from '../../models/user.model';
-import { Task } from '../../models/task.model';
+//import { Task } from '../../models/task.model';
 import { TASKS } from '../../../mock/tasks';
 
 @Component({
