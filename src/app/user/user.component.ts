@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Input, input } from '@angular/core';
 import { Output, output, EventEmitter } from '@angular/core';
 import { signal, computed } from '@angular/core';
-import { User } from '../../models/user.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-user',

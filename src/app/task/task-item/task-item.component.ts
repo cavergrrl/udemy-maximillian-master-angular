@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import { User } from '../../models/user.model';
+import { Component, Input } from '@angular/core';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-item',
@@ -8,6 +8,5 @@ import { User } from '../../models/user.model';
   styleUrl: './task-item.component.css'
 })
 export class TaskItemComponent {
-  @Input({ required:true }) user: User | undefined;
 
 }

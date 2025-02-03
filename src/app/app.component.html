@@ -13,7 +13,14 @@
     </ul>
   </div>
   <div>
-    <app-task-item [user]="selectedUser" />
+    @if (selectedUser) {
+      <app-task-list [user]="selectedUser" />
+    }
+    @else {
+      <div>
+        <p>Select a user</p>
+      </div>
+    }
   </div>
 </main>
 

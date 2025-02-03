@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {HeaderComponent} from './header/header.component';
-import {UserComponent} from './list/user/user.component';
-import { TaskItemComponent } from './list/task-item/task-item.component';
+import { HeaderComponent } from './header/header.component';
+import { UserComponent } from './user/user.component';
+import { TaskListComponent } from './task/task-list/task-list.component';
 import { USERS } from '../mock/users';
 import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, UserComponent, TaskItemComponent,
-    NgFor, RouterOutlet],
+  imports: [HeaderComponent, UserComponent, TaskListComponent,
+    RouterOutlet, NgFor],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
