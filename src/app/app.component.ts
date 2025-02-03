@@ -30,6 +30,10 @@ export class AppComponent {
     return this.users.find(user => user.id === id);
   }
 
+  trackByUserId(index: number, user: User) {
+    return user.id;
+  }
+
   get users() {
     return USERS;
   }

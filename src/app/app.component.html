@@ -3,7 +3,7 @@
 <main>
   <div>
     <ul id="users" >
-      <li *ngFor="let user of users">
+      <li *ngFor="let user of users; trackBy: trackByUserId">
         <app-user
           [user]="user"
           [userID]="user.id"
