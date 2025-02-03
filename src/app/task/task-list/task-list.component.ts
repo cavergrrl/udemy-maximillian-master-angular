@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { User } from '../../models/user.model';
-//import { Task } from '../../models/task.model';
+import { Task } from '../../models/task.model';
 import { TASKS } from '../../../mock/tasks';
 
 @Component({
@@ -15,15 +15,22 @@ import { TASKS } from '../../../mock/tasks';
 export class TaskListComponent {
   @Input({ required:true }) user: User | undefined;
 
+  tasks: Task[] = this.allTasks;
+
   onAddTask() {
 
+  }
+
+  onCompleteTask(id: string) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+    console.log(`task completed: ${id}`);
   }
 
   get avatarPath() {
     return `assets/users/${this.user?.avatar}`;
   }
 
-  get tasks() {
+  get allTasks() {
     return TASKS;
   }
 

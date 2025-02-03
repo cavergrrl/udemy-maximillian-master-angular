@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
+import { EventEmitter, Output} from '@angular/core';
 import { Task } from '../../models/task.model';
 
 @Component({
@@ -9,5 +10,9 @@ import { Task } from '../../models/task.model';
 })
 export class TaskItemComponent {
   @Input({ required:true }) task!: Task;
+  @Output() complete = new EventEmitter<string>();
 
+  markAsComplete() {
+    this.complete.emit(this.task.id);
+  }
 }
