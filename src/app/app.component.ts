@@ -19,4 +19,8 @@ export class AppComponent {
   get users() {
     return USERS;
   }
+
+  onSelectUser(id: string) {
+    console.log(`user: ${id}`);
+  }
 }
