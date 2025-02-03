@@ -20,6 +20,10 @@ export class TaskListComponent {
   tasks: Task[] = this.allTasks;
   isAddingTask = false;
 
+  ngOnChanges() {
+    this.isAddingTask = false;
+  }
+
   onStartAddTask() {
     this.isAddingTask = true;
     console.log('START: add task');
