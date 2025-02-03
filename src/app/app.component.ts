@@ -2,25 +2,36 @@ import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from './header/header.component';
-import {UserComponent} from './navigation/user/user.component';
+import {UserComponent} from './list/user/user.component';
+import { TaskItemComponent } from './list/task-item/task-item.component';
 import { USERS } from '../mock/users';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, RouterOutlet, UserComponent, NgFor],
+  imports: [HeaderComponent, UserComponent, TaskItemComponent,
+    NgFor, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Udemy - Master Angular';
+  title:string = 'Udemy - Master Angular';
+  selectedUserID:string = '';
+  selectedUser: { id: string; name: string; avatar: string; } | undefined;
+
+  onSelectUser(id: string) {
+    this.selectedUserID = id;
+    this.selectedUser = this.retrieveUser(id);
+    console.log(`user: ${this.selectedUserID}-${this.selectedUser?.name}`);
+  }
+
+  retrieveUser(id: string) {
+    return this.users.find(user => user.id === id);
+  }
 
   get users() {
     return USERS;
   }
 
-  onSelectUser(id: string) {
-    console.log(`user: ${id}`);
-  }
 }

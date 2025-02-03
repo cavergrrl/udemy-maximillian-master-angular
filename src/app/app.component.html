@@ -1,15 +1,27 @@
 <app-header />
 
 <main>
-  <ul id="users" >
-    <li *ngFor="let user of users">
-      <app-user
-        [user]="user"
-        [userID]="user.id"
-        (select)="onSelectUser($event)"
-      />
-    </li>
-  </ul>
+  <div>
+    <ul id="users" >
+      <li *ngFor="let user of users">
+        <app-user
+          [user]="user"
+          [userID]="user.id"
+          (select)="onSelectUser($event)"
+        />
+      </li>
+    </ul>
+  </div>
+  <div>
+    <app-task-item
+      [userID]="selectedUserID"
+      [userName]="selectedUser?.name"
+    />
+      <!--[tasks]="tasks"
+      [selectedUser]="selectedUser"
+      (addTask)="onAddTask($event)"
+      (deleteTask)="onDeleteTask($event)"-->
+  </div>
 </main>
 
 <router-outlet />
