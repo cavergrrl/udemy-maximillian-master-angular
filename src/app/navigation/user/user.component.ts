@@ -1,5 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
-import { USERS } from '../../../mock/users';
+import { Component, Input, input, signal, computed } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -8,19 +7,14 @@ import { USERS } from '../../../mock/users';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  user = signal(USERS[this.generateRandomIndex()]);
+  @Input({ required: true }) user!: { name: string; avatar: string };
+  userID = input.required<string>();
+
+  avatarPath = computed(() => `assets/users/${this.user.avatar}`);
 
   onSelectUser() {
-    console.log(`user currently: ${this.user().name}`);
-    this.user.set(USERS[this.generateRandomIndex()]);
-    console.log(`user updated: ${this.user().name}`);
+    console.log(`selected user: ${this.userID}-${this.user.name}`);
+    signal(this.userID);
   }
 
-  generateRandomIndex() {
-    return Math.floor(Math.random() * USERS.length);
-  }
-
-  get avatarPath() {
-    return computed( () => `assets/users/${this.user().avatar}`);
-  }
 }
