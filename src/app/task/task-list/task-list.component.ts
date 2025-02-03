@@ -24,14 +24,19 @@ export class TaskListComponent {
     this.isAddingTask = false;
   }
 
+  onCompleteTask(id: string) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+    console.log(`task completed: ${id}`);
+  }
+
   onStartAddTask() {
     this.isAddingTask = true;
     console.log('START: add task');
   }
 
-  onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
-    console.log(`task completed: ${id}`);
+  onCancelAddTask() {
+    this.isAddingTask = false;
+    console.log('CANCEL: add task');
   }
 
   get avatarPath() {
@@ -45,5 +50,4 @@ export class TaskListComponent {
   get tasksForUser() {
     return this.tasks.filter(task => task.userId === this.user?.id);
   }
-
 }
