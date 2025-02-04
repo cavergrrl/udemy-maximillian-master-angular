@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, SimpleChanges} from '@angular/core';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { User } from '../../models/user.model';
 import { Task, NewTask } from '../../models/task.model';
-import { TASKS } from '../../../mock/tasks';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -17,15 +17,21 @@ import { TASKS } from '../../../mock/tasks';
 export class TaskListComponent {
   @Input({ required:true }) user: User | undefined;
 
-  tasks: Task[] = this.allTasks;
+  tasks: Task[] = [];
   isAddingTask = false;
 
-  ngOnChanges() {
+  constructor(private taskService: TaskService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['user'] && this.user) {
+      this.loadTasks();
+    }
     this.isAddingTask = false;
   }
 
   onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
+    this.taskService.completeTask(id);
+    this.loadTasks();
     console.log(`task completed: ${id}`);
   }
 
@@ -35,14 +41,14 @@ export class TaskListComponent {
   }
 
   onAddTask(task: NewTask) {
-    this.tasks.push({
+    const newTask: Task = {
       id: Math.random().toString(),
       userId: this.user?.id || '',
       ...task
-    });
+    };
+    this.taskService.addTask(newTask);
     this.isAddingTask = false;
-    console.log(`ADD: task: ${task.title}`);
-
+    this.loadTasks();
   }
 
   onCancelAddTask() {
@@ -50,15 +56,17 @@ export class TaskListComponent {
     console.log('CANCEL: add task');
   }
 
-  get avatarPath() {
-    return `assets/users/${this.user?.avatar}`;
+  private loadTasks() {
+    if (this.user) {
+      this.tasks = this.taskService.getTasksForUser(this.user?.id || '');
+    }
   }
 
-  get allTasks() {
-    return TASKS;
+  get avatarPath() {
+    return this.taskService.getAvatarPath(this.user?.avatar || '');
   }
 
   get tasksForUser() {
-    return this.tasks.filter(task => task.userId === this.user?.id);
+    return this.tasks;
   }
 }
