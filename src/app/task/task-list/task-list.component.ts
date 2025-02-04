@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { User } from '../../models/user.model';
-import { Task } from '../../models/task.model';
+import { Task, NewTask } from '../../models/task.model';
 import { TASKS } from '../../../mock/tasks';
 
 @Component({
@@ -32,6 +32,17 @@ export class TaskListComponent {
   onStartAddTask() {
     this.isAddingTask = true;
     console.log('START: add task');
+  }
+
+  onAddTask(task: NewTask) {
+    this.tasks.push({
+      id: Math.random().toString(),
+      userId: this.user?.id || '',
+      ...task
+    });
+    this.isAddingTask = false;
+    console.log(`ADD: task: ${task.title}`);
+
   }
 
   onCancelAddTask() {
