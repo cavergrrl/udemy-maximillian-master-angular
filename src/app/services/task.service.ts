@@ -12,10 +12,6 @@ export class TaskService {
     this.loadTasks();
   }
 
-  getAvatarPath(avatarName: string): string {
-    return `assets/users/${avatarName}`;
-  }
-
   getTasksForUser(userId: string): Task[] {
     return this.tasks.filter(task => task.userId === userId);
   }

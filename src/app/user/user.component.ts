@@ -6,6 +6,7 @@ import { computed } from '@angular/core';
 // import { signal } from '@angular/core';
 import { User } from '../models/user.model';
 import { CardComponent } from '../ui/card/card.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -24,7 +25,9 @@ export class UserComponent {
   // @Output() select = new EventEmitter(); // Angular 18 and below
   select = output<string>(); // latest
 
-  avatarPath = computed(() => `assets/users/${this.user.avatar}`);
+  avatarPath = computed(() => this.userService.getAvatarPath(this.user.avatar));
+
+  constructor(private userService: UserService) {}
 
   onSelectUser() {
     console.log(`selected user: ${this.userID}-${this.user.name}`);

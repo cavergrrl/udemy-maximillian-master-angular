@@ -4,8 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
-import { USERS } from '../mock/users';
 import { User } from './models/user.model';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -20,14 +20,12 @@ export class AppComponent {
   selectedUserID:string = '';
   selectedUser: User | undefined;
 
+  constructor(private userService: UserService) {}
+
   onSelectUser(id: string) {
     this.selectedUserID = id;
-    this.selectedUser = this.retrieveUser(id);
+    this.selectedUser = this.userService.getUser(id);
     console.log(`user: ${this.selectedUserID}-${this.selectedUser?.name}`);
-  }
-
-  retrieveUser(id: string) {
-    return this.users.find(user => user.id === id);
   }
 
   trackByUserId(index: number, user: User) {
@@ -35,7 +33,7 @@ export class AppComponent {
   }
 
   get users() {
-    return USERS;
+    return this.userService.allUsers;
   }
 
 }

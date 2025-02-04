@@ -4,6 +4,7 @@ import { NewTaskComponent } from '../new-task/new-task.component';
 import { User } from '../../models/user.model';
 import { Task, NewTask } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-task-list',
@@ -20,7 +21,7 @@ export class TaskListComponent {
   tasks: Task[] = [];
   isAddingTask = false;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private userService: UserService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['user'] && this.user) {
@@ -63,7 +64,7 @@ export class TaskListComponent {
   }
 
   get avatarPath() {
-    return this.taskService.getAvatarPath(this.user?.avatar || '');
+    return this.userService.getAvatarPath(this.user?.avatar || '');
   }
 
   get tasksForUser() {
