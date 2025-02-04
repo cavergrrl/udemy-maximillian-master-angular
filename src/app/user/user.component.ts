@@ -5,11 +5,15 @@ import { output } from '@angular/core';
 import { computed } from '@angular/core';
 // import { signal } from '@angular/core';
 import { User } from '../models/user.model';
+import { CardComponent } from '../ui/card/card.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
+  imports: [
+    CardComponent
+  ],
   styleUrl: './user.component.css'
 })
 export class UserComponent {
