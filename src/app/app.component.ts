@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ConfigService } from './service/config.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Udemy - Master Angular';
+
+  constructor(private configService: ConfigService) {}
+
+  get title() {
+    return this.configService.get('appTitle');
+  }
 }
