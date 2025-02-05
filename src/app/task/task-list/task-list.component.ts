@@ -2,7 +2,7 @@ import {Component, Input, SimpleChanges} from '@angular/core';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { User } from '../../models/user.model';
-import { Task, NewTask } from '../../models/task.model';
+import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
 
@@ -41,18 +41,7 @@ export class TaskListComponent {
     console.log('START: add task');
   }
 
-  onAddTask(task: NewTask) {
-    const newTask: Task = {
-      id: Math.random().toString(),
-      userId: this.user?.id || '',
-      ...task
-    };
-    this.taskService.addTask(newTask);
-    this.isAddingTask = false;
-    this.loadTasks();
-  }
-
-  onCancelAddTask() {
+  onCloseAddTask() {
     this.isAddingTask = false;
     console.log('CANCEL: add task');
   }
