@@ -14,7 +14,6 @@ import {InvestmentData} from './model/investmentData';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Investment Calculator';
 
   constructor(private investmentService: InvestmentService) {}
 
