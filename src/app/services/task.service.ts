@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { Task } from '../models/task.model';
+import {NewTask, Task} from '../models/task.model';
 import { TASKS } from '../../mock/tasks';
 
 @Injectable({
@@ -16,8 +16,14 @@ export class TaskService {
     return this.tasks.filter(task => task.userId === userId);
   }
 
-  addTask(task: Task): void {
-    this.tasks.push(task);
+  addTask(userId: string, task: NewTask): void {
+    this.tasks.unshift({
+      id: new Date().getTime().toString(),
+      userId: userId,
+      title: task.title,
+      summary: task.summary,
+      dueDate: task.dueDate
+    });
   }
 
   completeTask(id: string): void {

@@ -2,6 +2,7 @@
   <app-new-task
     [userId]="user?.id || ''"
     (close)="onCloseAddTask()"
+    (add)="onAddTask()"
   />
 }
 

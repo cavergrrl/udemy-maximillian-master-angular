@@ -13,6 +13,7 @@ import {TaskService} from '../../services/task.service';
 export class NewTaskComponent {
   @Input({ required:true }) userId!: string;
   @Output() close = new EventEmitter<void>();
+  @Output() add = new EventEmitter<void>();
 
   titleValue = '';
   summaryValue = '';
@@ -25,14 +26,15 @@ export class NewTaskComponent {
   }
 
   onSubmit() {
-    this.taskService.addTask({
-      id: Math.random().toString(),
-      userId: this.userId,
+    this.taskService.addTask(
+      this.userId,
+      {
       title: this.titleValue,
       summary: this.summaryValue,
       dueDate: this.dueDateValue
-    });
+      });
 
+    this.add.emit();
     this.close.emit();
   }
 }

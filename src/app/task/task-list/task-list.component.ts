@@ -38,12 +38,14 @@ export class TaskListComponent {
 
   onStartAddTask() {
     this.isAddingTask = true;
-    console.log('START: add task');
   }
 
   onCloseAddTask() {
     this.isAddingTask = false;
-    console.log('CANCEL: add task');
+  }
+
+  onAddTask() {
+    this.loadTasks();
   }
 
   private loadTasks() {
