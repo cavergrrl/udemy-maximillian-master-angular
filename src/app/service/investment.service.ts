@@ -1,36 +1,42 @@
 import { Injectable } from '@angular/core';
+import {AnnualData} from '../model/annualData';
+import {InvestmentData} from '../model/investmentData';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvestmentService {
-  private initialInvestment: number = 0;
-  private duration: number = 0;
-  private expectedReturn: number = 0;
-  private annualInvestment: number = 0;
+  private investmentData?: InvestmentData;
 
-  calculateInvestmentResults() {
+  calculateInvestment(investmentData: InvestmentData) {
+    this.investmentData = investmentData;
+    console.log(investmentData);
+
     const annualData = [];
-    let investmentValue = this.initialInvestment;
+    let investmentValue = this.investmentData.initialInvestment;
 
-    for (let i = 0; i < this.duration; i++) {
+    for (let i = 0; i < this.investmentData.duration; i++) {
       const year = i + 1;
-      const interestEarnedInYear = investmentValue * (this.expectedReturn / 100);
+      const interestEarnedInYear = investmentValue * (this.investmentData.expectedReturn / 100);
 
-      investmentValue += interestEarnedInYear + this.annualInvestment;
+      investmentValue += interestEarnedInYear + this.investmentData.annualInvestment;
 
-      const totalInterest = investmentValue - this.annualInvestment * year - this.initialInvestment;
+      const totalInterest = investmentValue - this.investmentData.annualInvestment * year - this.investmentData.initialInvestment;
 
-      annualData.push({
+      let data:AnnualData = {
         year: year,
         interest: interestEarnedInYear,
         valueEndOfYear: investmentValue,
-        annualInvestment: this.annualInvestment,
+        annualInvestment: this.investmentData.annualInvestment,
         totalInterest: totalInterest,
-        totalAmountInvested: this.initialInvestment + this.annualInvestment * year,
-      });
+        totalAmountInvested: this.investmentData.initialInvestment + this.investmentData.annualInvestment * year,
+      }
+
+      annualData.push({...data});
     }
 
+    //print the annualData values
+    console.log(annualData);
     return annualData;
   }
 }
