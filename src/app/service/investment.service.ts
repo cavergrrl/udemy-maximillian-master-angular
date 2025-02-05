@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {AnnualData} from '../model/annualData';
 import {InvestmentData} from '../model/investmentData';
 
@@ -6,37 +6,35 @@ import {InvestmentData} from '../model/investmentData';
   providedIn: 'root'
 })
 export class InvestmentService {
-  private investmentData?: InvestmentData;
+  annualData = signal<AnnualData[] | undefined>(undefined);
 
   calculateInvestment(investmentData: InvestmentData) {
-    this.investmentData = investmentData;
     console.log(investmentData);
 
     const annualData = [];
-    let investmentValue = this.investmentData.initialInvestment;
+    let investmentValue = investmentData.initialInvestment;
 
-    for (let i = 0; i < this.investmentData.duration; i++) {
+    for (let i = 0; i < investmentData.duration; i++) {
       const year = i + 1;
-      const interestEarnedInYear = investmentValue * (this.investmentData.expectedReturn / 100);
+      const interestEarnedInYear = investmentValue * (investmentData.expectedReturn / 100);
 
-      investmentValue += interestEarnedInYear + this.investmentData.annualInvestment;
+      investmentValue += interestEarnedInYear + investmentData.annualInvestment;
 
-      const totalInterest = investmentValue - this.investmentData.annualInvestment * year - this.investmentData.initialInvestment;
+      const totalInterest = investmentValue - investmentData.annualInvestment * year - investmentData.initialInvestment;
 
       let data:AnnualData = {
         year: year,
         interest: interestEarnedInYear,
         valueEndOfYear: investmentValue,
-        annualInvestment: this.investmentData.annualInvestment,
+        annualInvestment: investmentData.annualInvestment,
         totalInterest: totalInterest,
-        totalAmountInvested: this.investmentData.initialInvestment + this.investmentData.annualInvestment * year,
+        totalAmountInvested: investmentData.initialInvestment + investmentData.annualInvestment * year,
       }
 
       annualData.push({...data});
     }
 
-    //print the annualData values
     console.log(annualData);
-    return annualData;
+    this.annualData.set(annualData);
   }
 }
