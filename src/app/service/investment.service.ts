@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AnnualData} from '../model/annualData';
 import {InvestmentData} from '../model/investmentData';
 
