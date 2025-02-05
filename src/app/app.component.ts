@@ -17,7 +17,7 @@ export class AppComponent {
 
   constructor(private investmentService: InvestmentService) {}
 
-  calculate(investmentData:InvestmentData) {
+  onCalculate(investmentData:InvestmentData) {
     this.investmentService.calculateInvestment(investmentData);
   }
 }
