@@ -1,3 +1,3 @@
 export const environment = {
-  appTitle: 'Udemy - Master Angular'
+  appTitle: 'CMP Deep Dive'
 }
