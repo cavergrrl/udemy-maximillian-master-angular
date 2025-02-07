@@ -2,13 +2,13 @@
   title="{{title}}"
   [image]="image"
 >
-  @if (currentStatus === 'online') {
+  @if (currentStatus() === 'online') {
     <div class="status-online">
       <p>Servers are online</p>
       <p>All systems are operational.</p>
     </div>
   }
-  @else if (currentStatus === 'offline') {
+  @else if (currentStatus() === 'offline') {
     <div class="status-offline">
       <p>Servers are offline</p>
       <p>Functionality should be restored soon.</p>

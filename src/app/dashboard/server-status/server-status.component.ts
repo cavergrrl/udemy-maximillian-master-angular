@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, signal} from '@angular/core';
 import {DashboardItemComponent} from '../dashboard-item/dashboard-item.component';
 
 @Component({
@@ -12,7 +12,7 @@ import {DashboardItemComponent} from '../dashboard-item/dashboard-item.component
 export class ServerStatusComponent implements OnInit, OnDestroy {
   title = 'Server Status';
   image = { src: 'status.png', alt: 'Server' };
-  currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('offline');
 
   private interval?: ReturnType<typeof setInterval>;
 
@@ -22,11 +22,11 @@ export class ServerStatusComponent implements OnInit, OnDestroy {
     this.interval = setInterval(() => {
       const random = Math.random();
       if (random < 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online');
       } else if (random < 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     }, 5000);
   }
