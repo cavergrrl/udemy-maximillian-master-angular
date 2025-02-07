@@ -11,6 +11,8 @@ import {TrafficService} from '../../service/traffic.service';
   styleUrl: './traffic.component.css'
 })
 export class TrafficComponent {
+  title: string = 'Traffic';
+  image: {src: string, alt: string} = { src: 'globe.png', alt: 'A globe' };
   maxTraffic: number = 1;
 
   constructor(private trafficService: TrafficService) {}

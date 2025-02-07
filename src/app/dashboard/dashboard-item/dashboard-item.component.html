@@ -1,3 +1,11 @@
 <div class="dashboard-item">
-  <ng-content />
+  <article>
+    <header>
+      <img [src]="imageSrc"  [alt]="image.alt" />
+      <h2>{{title}}</h2>
+    </header>
+    <div>
+      <ng-content />
+    </div>
+  </article>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {DashboardItemComponent} from '../dashboard-item/dashboard-item.component';
 
 @Component({
@@ -10,5 +10,7 @@ import {DashboardItemComponent} from '../dashboard-item/dashboard-item.component
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent {
+  title = 'Server Status';
+  image = { src: 'status.png', alt: 'Server' };
   currentStatus = 'online';
 }

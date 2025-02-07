@@ -10,5 +10,6 @@ import {DashboardItemComponent} from '../dashboard-item/dashboard-item.component
   styleUrl: './support-tickets.component.css'
 })
 export class SupportTicketsComponent {
-
+  title = 'Support Tickets';
+  image = { src: 'list.png', alt: 'A list of items' };
 }
