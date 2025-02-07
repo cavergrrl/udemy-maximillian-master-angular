@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './service/config.service';
 import {TrafficService} from './service/traffic.service';
+import {HeaderComponent} from './header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [
+    HeaderComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -18,10 +21,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.maxTraffic = this.trafficService.calculateMaxTraffic();
-  }
-
-  get title() {
-    return this.configService.get('appTitle');
   }
 
   get trafficData() {
