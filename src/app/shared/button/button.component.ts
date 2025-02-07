@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
+  private submitted: boolean = false;
 
+  setIsSubmitted(value: boolean) {
+    this.submitted = value;
+  }
+
+  get isSubmitted(): boolean {
+    return this.submitted;
+  }
 }
