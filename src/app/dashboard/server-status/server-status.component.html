@@ -3,15 +3,21 @@
   [image]="image"
 >
   @if (currentStatus === 'online') {
-    <p>Servers are online</p>
-    <p>All systems are operational.</p>
+    <div class="status-online">
+      <p>Servers are online</p>
+      <p>All systems are operational.</p>
+    </div>
   }
   @else if (currentStatus === 'offline') {
-    <p>Servers are offline</p>
-    <p>Functionality should be restored soon.</p>
+    <div class="status-offline">
+      <p>Servers are offline</p>
+      <p>Functionality should be restored soon.</p>
+    </div>
   }
   @else {
-    <p>Server status is unknown</p>
-    <p>Fetching server status failed.</p>
+    <div class="status-unknown">
+      <p>Server status is unknown</p>
+      <p>Fetching server status failed.</p>
+    </div>
   }
 </app-dashboard-item>
